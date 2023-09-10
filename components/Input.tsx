@@ -8,11 +8,14 @@ type Props = {
 };
 
 export default function Input({ register, name, error, ...rest }: Props) {
-  const registerAttr = register ? register : (param: string) => {};
+  const attrs = {
+    ...(register && { ...register(name, { required: true }) }),
+    ...rest,
+  };
   return (
-    <div>
-      <input {...registerAttr(name, { required: true })} {...rest} />
-      {error}
+    <div className="flex flex-col">
+      <input {...attrs} />
+      {error && <span role="alert">This is required</span>}{" "}
     </div>
   );
 }

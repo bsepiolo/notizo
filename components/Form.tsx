@@ -7,8 +7,11 @@ type Props = {
   defaultValues?: Record<string, string | number | boolean>;
 };
 export default function Form({ defaultValues, children, onSubmit }: Props) {
-  const methods = useForm({ defaultValues });
-  const { handleSubmit, register, formState: errors } = methods;
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
 
   return (
     <form
@@ -23,7 +26,7 @@ export default function Form({ defaultValues, children, onSubmit }: Props) {
                 ...child.props,
                 register,
                 key: child.props.id,
-                error: errors?.name,
+                error: errors[child.props.name],
               },
             })
           : child;
