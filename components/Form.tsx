@@ -1,11 +1,13 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, Children, cloneElement } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import FormControl from "@/components/FormControl";
 
 type Props = {
   onSubmit: SubmitHandler<any>;
   children: ReactElement[];
   defaultValues?: Record<string, string | number | boolean>;
 };
+
 export default function Form({ defaultValues, children, onSubmit }: Props) {
   const {
     handleSubmit,
@@ -19,17 +21,11 @@ export default function Form({ defaultValues, children, onSubmit }: Props) {
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >
-      {React.Children.map(children, (child) => {
-        return child.props.id
-          ? React.createElement(child.type, {
-              ...{
-                ...child.props,
-                register,
-                key: child.props.id,
-                error: errors[child.props.name],
-              },
-            })
-          : child;
+      {Children.map(children, (child) => {
+        if (child.type === FormControl) {
+          return cloneElement(child, { register, errors });
+        }
+        return child;
       })}
     </form>
   );
