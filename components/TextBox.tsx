@@ -28,7 +28,7 @@ export default function TextBox({
         id={id}
         placeholder={placeholder}
         {...registerAttribute}
-        className="rounded-md px-4 py-2 bg-inherit border w-full"
+        className="rounded-md h-input-lg px-4 py-2 bg-white border border-gray-200 w-full"
       />
     </div>
   );
