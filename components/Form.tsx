@@ -5,10 +5,9 @@ import FormControl from "@/components/FormControl";
 type Props = {
   onSubmit: SubmitHandler<any>;
   children: ReactElement[];
-  defaultValues?: Record<string, string | number | boolean>;
 };
 
-export default function Form({ defaultValues, children, onSubmit }: Props) {
+export default function Form({ children, onSubmit }: Props) {
   const {
     handleSubmit,
     register,
