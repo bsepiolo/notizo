@@ -7,7 +7,7 @@ type Props = {
   type: string;
   register?: UseFormRegister<FieldValues>;
   placeholder: string;
-  isError: boolean;
+  isError?: boolean;
   rules?: ValidationRules;
 };
 

@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Form from "@/components/Form";
 import FormControl from "@/components/FormControl";
 import TextBox from "@/components/TextBox";
+import FieldLabel from "@/components/FieldLabel";
 
 type FormFields = {
   email: string;
@@ -22,7 +23,7 @@ export default function SignUp() {
         <FormControl
           rules={{ required: { value: true, message: "field required" } }}
         >
-          <label htmlFor="email">Email</label>
+          <FieldLabel htmlFor="email">Email</FieldLabel>
           <TextBox
             id="email"
             name="email"
@@ -34,7 +35,7 @@ export default function SignUp() {
         <FormControl
           rules={{ required: { value: true, message: "field required" } }}
         >
-          <label htmlFor="password">Password</label>
+          <FieldLabel htmlFor="password">Password</FieldLabel>
           <TextBox
             id="password"
             name="password"
