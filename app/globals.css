@@ -7,20 +7,22 @@
     --white: #FFF;
     --black: #151515;
     --gray-100: #E4E4E4;
-    --gay-200: #B9B9B9;
+    --gray-200: #B9B9B9;
+    --gray-300: #292929;
     --blue: #2D55FB;
+    --red: #EF3D3D;
     --primary: var(--black);
+    --primary-hover: var(--gray-300);
     --secondary: var(--gray-100);
     --accent: var(--blue);
+    --error: var(--red);
   }
 }
 
 .animate-in {
   animation: animateIn 0.3s ease 0.15s both;
 }
-html,body{
-  font-size: 15px;
-}
+
 @keyframes animateIn {
   from {
     opacity: 0;

@@ -1,6 +1,7 @@
 import { FieldError } from "react-hook-form";
 import { Children, ReactElement, cloneElement } from "react";
 import TextBox from "@/components/TextBox";
+import ValidationError from "@/components/ValidationError";
 import { ValidationRules } from "@/types/validation-rules.type";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
@@ -14,22 +15,26 @@ type Props = {
 
 export default function FormControl({
   children,
-  errors,
+  errors = {},
   rules,
   register,
 }: Props) {
   let inputName;
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col relative pb-4.5">
       {Children.map(children, (child) => {
         if (child.type === FormControlsUnion) {
           inputName = child.props.name;
-          return cloneElement(child, { rules, register });
+          return cloneElement(child, {
+            rules,
+            register,
+            isError: errors[inputName],
+          });
         }
         return child;
       })}
-      {inputName && errors && errors[inputName] && (
-        <div className="text-red-500">{errors[inputName].message}</div>
+      {inputName && errors[inputName] && (
+        <ValidationError>{errors[inputName].message}</ValidationError>
       )}
     </div>
   );

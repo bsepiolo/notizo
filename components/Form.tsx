@@ -16,7 +16,7 @@ export default function Form({ children, onSubmit }: Props) {
 
   return (
     <form
-      className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
+      className="flex flex-col"
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >
