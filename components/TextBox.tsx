@@ -23,7 +23,9 @@ export default function TextBox({
     ...(register && { ...register(name, rules) }),
   };
 
-  const borderColorClass = `${isError ? "border-error" : "border-gray-200"}`;
+  const borderColorClass = `border ${
+    isError ? "border-error" : "border-gray-100"
+  }`;
 
   return (
     <div>
@@ -32,7 +34,7 @@ export default function TextBox({
         id={id}
         placeholder={placeholder}
         {...registerAttribute}
-        className={`rounded-2sm h-input-lg px-4 py-2 bg-white border w-full ${borderColorClass}`}
+        className={`rounded-2sm h-input-lg px-4 py-2 bg-white  w-full ${borderColorClass}`}
       />
     </div>
   );

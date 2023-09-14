@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Form from "@/components/Form";
 import FormControl from "@/components/FormControl";
 import TextBox from "@/components/TextBox";
+import Button from "@/components/Button";
 import FieldLabel from "@/components/FieldLabel";
 
 type FormFields = {
@@ -43,12 +44,9 @@ export default function SignUp() {
             placeholder="••••••••"
           />
         </FormControl>
-        <button
-          type="submit"
-          className="bg-green-700 rounded px-4 py-2 text-white mb-2"
-        >
+        <Button type="submit" variant="primary">
           Sign Up
-        </button>
+        </Button>
         <Link
           href="/"
           className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"

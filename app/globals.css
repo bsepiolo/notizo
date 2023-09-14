@@ -4,23 +4,23 @@
 
 @layer base {
   :root {
-    --white: #FFF;
-    --black: #151515;
-    --gray-100: #E4E4E4;
-    --gray-200: #B9B9B9;
-    --gray-300: #292929;
-    --blue: #2D55FB;
-    --red: #EF3D3D;
+    --white: 255 255 255;
+    --black: 21 21 21;
+    --gray-100: 200 200 200;
+    --gray-200: 228 228 228;
+    --gray-300: 41 41 41;
+    --gray-400: 245 245 245;
+    --blue: 45 85 251;
+    --red: 239 61 61;
     --primary: var(--black);
-    --primary-hover: var(--gray-300);
-    --secondary: var(--gray-100);
+    --secondary: var(--gray-200);
     --accent: var(--blue);
     --error: var(--red);
   }
 }
 
 html,body{
-  color: var(--black)
+  color: rgb(var(--black))
 }
 
 .animate-in {
