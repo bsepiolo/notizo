@@ -1,13 +1,14 @@
 "use client";
 import Link from "next/link";
 import Messages from "@/components/Messages";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
 
 import Form from "@/components/Form";
 import FormControl from "@/components/FormControl";
 import TextBox from "@/components/TextBox";
 import Button from "@/components/Button";
 import FieldLabel from "@/components/FieldLabel";
+import { VALIDATION_RULES } from "@/constants/validation-rules";
 
 type FormFields = {
   email: string;
@@ -21,9 +22,7 @@ export default function SignUp() {
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <Form onSubmit={onSubmit}>
-        <FormControl
-          rules={{ required: { value: true, message: "field required" } }}
-        >
+        <FormControl rules={VALIDATION_RULES.email}>
           <FieldLabel htmlFor="email">Email</FieldLabel>
           <TextBox
             id="email"
@@ -33,9 +32,7 @@ export default function SignUp() {
           />
         </FormControl>
 
-        <FormControl
-          rules={{ required: { value: true, message: "field required" } }}
-        >
+        <FormControl rules={VALIDATION_RULES.password}>
           <FieldLabel htmlFor="password">Password</FieldLabel>
           <TextBox
             id="password"
