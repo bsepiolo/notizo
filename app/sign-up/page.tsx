@@ -41,15 +41,10 @@ export default function SignUp() {
             placeholder="••••••••"
           />
         </FormControl>
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" className="mt-4">
           Sign Up
         </Button>
-        <Link
-          href="/"
-          className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
-        >
-          Sign in
-        </Link>
+
         <Messages />
       </Form>
     </div>

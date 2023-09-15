@@ -10,6 +10,7 @@ type Props = {
   isOutlined?: boolean;
   type?: "submit" | "button" | "reset";
   children: string | ReactElement | ReactElement[];
+  className?: string;
   onClick?: () => void;
 };
 
@@ -18,6 +19,7 @@ export default function TextBox({
   variant = "primary",
   type = "button",
   isOutlined = false,
+  className,
   onClick,
 }: Props) {
   const outlinedClasses = {
@@ -37,7 +39,7 @@ export default function TextBox({
   return (
     <button
       type={type}
-      className={`h-input-lg rounded px-4 py-2 transition-colors duration-75 ${mainClasses}`}
+      className={`h-input-lg rounded px-4 py-2 transition-colors duration-75 ${mainClasses} ${className}`}
       onClick={onClick}
     >
       {children}
