@@ -14,10 +14,10 @@ type FormFields = {
   email: string;
   password: string;
 };
-export default function SignUp() {
+export default function SignIn() {
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
     console.log(formData);
-    await fetch("/auth/sign-up", {
+    await fetch("/auth/sign-in", {
       method: "POST",
       body: JSON.stringify(formData),
     });

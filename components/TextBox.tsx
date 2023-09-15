@@ -18,6 +18,7 @@ export default function TextBox({
   id,
   placeholder,
   isError,
+  type,
 }: Props) {
   const registerAttribute = {
     ...(register && { ...register(name, rules) }),
@@ -33,6 +34,7 @@ export default function TextBox({
         name={name}
         id={id}
         placeholder={placeholder}
+        type={type}
         {...registerAttribute}
         className={`rounded-2sm h-input-lg px-4 py-2 bg-white  w-full ${borderColorClass}`}
       />
