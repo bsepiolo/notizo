@@ -9,16 +9,25 @@ import Button from "@/components/Button";
 import FieldLabel from "@/components/FieldLabel";
 import Heading from "@/components/Heading";
 import { VALIDATION_RULES } from "@/constants/validation-rules";
+import { ToastContext } from "@/context/toast-context";
+import { useContext } from "react";
 
 type FormFields = {
   email: string;
   password: string;
 };
 export default function Index() {
+  const { setToastState } = useContext(ToastContext);
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
-    await fetch("/auth/sign-in", {
+    fetch("/auth/sign-in", {
       method: "POST",
       body: JSON.stringify(formData),
+    }).then(async (response) => {
+      if (!response.ok) {
+        const error = await response.text();
+        console.log(error);
+        setToastState({ visible: true });
+      }
     });
   };
 
