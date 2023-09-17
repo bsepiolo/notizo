@@ -39,7 +39,7 @@ export default function TextBox({
   return (
     <button
       type={type}
-      className={`h-input-lg rounded px-4 py-2 transition-colors duration-75 ${mainClasses} ${className}`}
+      className={`h-input-lg rounded px-4 py-2 transition-colors duration-75 flex items-center justify-center ${mainClasses} ${className}`}
       onClick={onClick}
     >
       {children}

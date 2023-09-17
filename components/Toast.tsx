@@ -1,7 +1,6 @@
 "use client";
 import { useToastStore } from "@/store/toast";
-import { TIMERS } from "@/constants/timers";
-
+import Button from "@/components/Button";
 export default function Toast() {
   const { toast, removeToast } = useToastStore();
 
@@ -22,10 +21,13 @@ export default function Toast() {
       <div
         className={`${
           typeClasses[toast.type]
-        } max-w-md fixed w-full bg-opacity-10 border  py-3 px-5 rounded-2sm inset-x-0 top-6 mx-auto`}
+        } max-w-md fixed w-full items-center bg-opacity-10 border flex  py-3 px-5 rounded-2sm inset-x-0 top-6 mx-auto`}
         role="alert"
       >
-        {toast.message}
+        <div className="grow">{toast.message}</div>
+        <Button onClick={removeToast} variant="text">
+          <i className="eva eva-close-outline "></i>
+        </Button>
       </div>
     )
   );
