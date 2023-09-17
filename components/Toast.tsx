@@ -1,31 +1,32 @@
 "use client";
-import { useState, useContext } from "react";
-import { ToastContext } from "@/context/toast-context";
-type Props = {
-  children?: string;
-};
+import { useToastStore } from "@/store/toast";
+import { TIMERS } from "@/constants/timers";
 
-export default function Toast({ children }: Props) {
-  const { toastState } = useContext(ToastContext);
+export default function Toast() {
+  const { toast, removeToast } = useToastStore();
+
+  const typeClasses = {
+    Success: "bg-green-500 border-green-500 text-green-500",
+    Error: "bg-red border-red text-red",
+    Info: "bg-blue border-blue text-blue",
+  };
+
+  if (toast && !toast.permanent) {
+    setTimeout(() => {
+      removeToast();
+    }, toast.expirationTime);
+  }
+
   return (
-    toastState.visible && (
+    toast && (
       <div
-        className="bg-red text-red max-w-md fixed w-full bg-opacity-10 border border-red py-4 px-5 rounded-2sm inset-x-0 top-6 mx-auto"
+        className={`${
+          typeClasses[toast.type]
+        } max-w-md fixed w-full bg-opacity-10 border  py-3 px-5 rounded-2sm inset-x-0 top-6 mx-auto`}
         role="alert"
       >
-        We couldn't find a match for that email and password. Give it another
-        shot or reset your password if needed!
+        {toast.message}
       </div>
     )
-  );
-}
-
-export function ToastContextProvider({ children }: any) {
-  const [toastState, setToastState] = useState({ visible: false });
-
-  return (
-    <ToastContext.Provider value={{ toastState, setToastState }}>
-      {children}
-    </ToastContext.Provider>
   );
 }

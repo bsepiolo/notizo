@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { SubmitHandler } from "react-hook-form";
+import { useSearchParams } from "next/navigation";
 
 import Form from "@/components/Form";
 import FormControl from "@/components/FormControl";
@@ -9,26 +10,28 @@ import Button from "@/components/Button";
 import FieldLabel from "@/components/FieldLabel";
 import Heading from "@/components/Heading";
 import { VALIDATION_RULES } from "@/constants/validation-rules";
-import { ToastContext } from "@/context/toast-context";
-import { useContext } from "react";
-
+import { signInHandler } from "@/app/actions/sign-in";
+import { useToastStore } from "@/store/toast";
 type FormFields = {
   email: string;
   password: string;
 };
 export default function Index() {
-  const { setToastState } = useContext(ToastContext);
+  const { setToast } = useToastStore();
+  const searchParams = useSearchParams();
+  const emailVerificationMessage = searchParams.get(
+    "email-verification-message"
+  );
+
+  if (emailVerificationMessage) {
+    setToast({ message: emailVerificationMessage, type: "Success" });
+  }
+
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
-    fetch("/auth/sign-in", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    }).then(async (response) => {
-      if (!response.ok) {
-        const error = await response.text();
-        console.log(error);
-        setToastState({ visible: true });
-      }
-    });
+    const { error } = (await signInHandler(formData)) ?? {};
+    if (error) {
+      setToast({ message: error.message, type: "Error" });
+    }
   };
 
   return (

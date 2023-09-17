@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Roboto, Montserrat, Istok_Web } from "next/font/google";
-import Toast, { ToastContextProvider } from "@/components/Toast";
+import Toast from "@/components/Toast";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -33,10 +33,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const toastState = {
-    visible: false,
-  };
-
   return (
     <html
       lang="en"
@@ -46,12 +42,10 @@ export default function RootLayout({
         <main className="min-h-screen flex flex-col">
           <div className="px-6 py-4 text-2xl font-istok-web">Notizo</div>
           <div className="flex justify-center flex-grow">
-            <ToastContextProvider>
-              <div className="flex flex-col w-full max-w-sm mt-[10vh] px-6">
-                {children}
-              </div>
-              <Toast />
-            </ToastContextProvider>
+            <div className="flex flex-col w-full max-w-sm mt-[10vh] px-6">
+              {children}
+            </div>
+            <Toast />
           </div>
         </main>
       </body>

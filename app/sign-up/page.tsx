@@ -10,17 +10,22 @@ import Button from "@/components/Button";
 import FieldLabel from "@/components/FieldLabel";
 import Heading from "@/components/Heading";
 import { VALIDATION_RULES } from "@/constants/validation-rules";
+import { signUpHandler } from "@/app/actions/sign-up";
+import { useToastStore } from "@/store/toast";
 
 type FormFields = {
   email: string;
   password: string;
 };
 export default function SignUp() {
+  const { setToast } = useToastStore();
+
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
-    await fetch("/auth/sign-up", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    });
+    const { error, successMessage } = await signUpHandler(formData);
+    if (error) {
+      setToast({ message: error.message, type: "Error" });
+    }
+    if (successMessage) setToast({ message: successMessage, type: "Success" });
   };
 
   return (
