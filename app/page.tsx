@@ -57,7 +57,7 @@ export default function Index() {
             placeholder="••••••••"
           />
         </FormControl>
-        <Button type="submit" variant="primary" className="mt-4">
+        <Button type="submit" className="mt-4">
           Sign in
         </Button>
         <p className="text-center mt-10">
