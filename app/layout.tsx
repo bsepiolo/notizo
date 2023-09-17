@@ -1,4 +1,5 @@
 import "./globals.css";
+import "eva-icons/style/eva-icons.css";
 import { Roboto, Montserrat, Istok_Web } from "next/font/google";
 import Toast from "@/components/Toast";
 
