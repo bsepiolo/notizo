@@ -10,6 +10,15 @@ export default function Toast() {
     Info: "bg-blue border-blue text-blue",
   };
 
+  const buttonColor: Record<
+    string,
+    "primary" | "warning" | "secondary" | "success"
+  > = {
+    Success: "success",
+    Error: "warning",
+    Info: "secondary",
+  };
+
   if (toast && !toast.permanent) {
     setTimeout(() => {
       removeToast();
@@ -25,7 +34,11 @@ export default function Toast() {
         role="alert"
       >
         <div className="grow">{toast.message}</div>
-        <Button onClick={removeToast} variant="text">
+        <Button
+          onClick={removeToast}
+          variant="text"
+          color={buttonColor[toast.type]}
+        >
           <i className="eva eva-close-outline "></i>
         </Button>
       </div>
