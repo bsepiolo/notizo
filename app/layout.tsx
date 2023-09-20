@@ -1,7 +1,7 @@
 import "./globals.css";
 import "eva-icons/style/eva-icons.css";
 import { Roboto, Montserrat, Istok_Web } from "next/font/google";
-import Toast from "@/components/Toast";
+import Toast from "@/app/components/Toast";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -41,13 +41,8 @@ export default function RootLayout({
     >
       <body>
         <main className="min-h-screen flex flex-col">
-          <div className="px-6 py-4 text-2xl font-istok-web">Notizo</div>
-          <div className="flex justify-center flex-grow">
-            <div className="flex flex-col w-full max-w-sm mt-[10vh] px-6">
-              {children}
-            </div>
-            <Toast />
-          </div>
+          {children}
+          <Toast />
         </main>
       </body>
     </html>

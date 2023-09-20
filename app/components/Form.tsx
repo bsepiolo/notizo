@@ -1,6 +1,6 @@
 import React, { ReactElement, Children, cloneElement } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import FormControl from "@/components/FormControl";
+import FormControl from "@/app/components/FormControl";
 
 type Props = {
   onSubmit: SubmitHandler<any>;
