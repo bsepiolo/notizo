@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import Messages from "@/components/Messages";
 import { SubmitHandler } from "react-hook-form";
 
 import Form from "@/components/Form";
@@ -23,10 +22,10 @@ export default function SignUp() {
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
     const { error, success } = await signUpHandler(formData);
     if (error) {
-      setToast({ message: error.message, type: "Error" });
+      setToast({ message: error.message, type: "error" });
     }
     if (success) {
-      setToast({ message: success.message, type: "Success" });
+      setToast({ message: success.message, type: "success" });
     }
   };
 

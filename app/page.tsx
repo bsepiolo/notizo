@@ -24,13 +24,13 @@ export default function Index() {
   );
 
   if (emailVerificationMessage) {
-    setToast({ message: emailVerificationMessage, type: "Success" });
+    setToast({ message: emailVerificationMessage, type: "success" });
   }
 
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
     const { error } = (await signInHandler(formData)) ?? {};
     if (error) {
-      setToast({ message: error.message, type: "Error" });
+      setToast({ message: error.message, type: "error" });
     }
   };
 

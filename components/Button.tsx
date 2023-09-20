@@ -1,10 +1,12 @@
 import { ReactElement } from "react";
 
+export type ButtonVariant = "default" | "text" | "outlined";
+export type ButtonColor = "primary" | "secondary" | "warning" | "success";
 type Props = {
-  variant?: "default" | "text" | "outlined";
+  variant?: ButtonVariant;
   type?: "submit" | "button" | "reset";
   children: string | ReactElement | ReactElement[];
-  color?: "primary" | "secondary" | "warning" | "success";
+  color?: ButtonColor;
   className?: string;
   onClick?: () => void;
 };

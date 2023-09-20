@@ -2,7 +2,7 @@ import { TIMERS } from "@/constants/timers";
 import { create } from "zustand";
 type ToastData = {
   message: string;
-  type: "Success" | "Error" | "Info";
+  type: "success" | "error" | "info";
   permanent?: boolean;
   expirationTime?: number;
 } | null;

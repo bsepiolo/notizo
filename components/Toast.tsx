@@ -1,22 +1,19 @@
 "use client";
 import { useToastStore } from "@/store/toast";
-import Button from "@/components/Button";
+import Button, { ButtonColor } from "@/components/Button";
 export default function Toast() {
   const { toast, removeToast } = useToastStore();
 
   const typeClasses = {
-    Success: "bg-green-500 border-green-500 text-green-500",
-    Error: "bg-red border-red text-red",
-    Info: "bg-blue border-blue text-blue",
+    success: "bg-green-500 border-green-500 text-green-500",
+    error: "bg-red border-red text-red",
+    info: "bg-blue border-blue text-blue",
   };
 
-  const buttonColor: Record<
-    string,
-    "primary" | "warning" | "secondary" | "success"
-  > = {
-    Success: "success",
-    Error: "warning",
-    Info: "secondary",
+  const buttonColor: Record<string, ButtonColor> = {
+    success: "success",
+    error: "warning",
+    info: "secondary",
   };
 
   if (toast && !toast.permanent) {
