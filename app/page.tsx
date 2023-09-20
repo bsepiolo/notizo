@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { SubmitHandler } from "react-hook-form";
+import { useSearchParams } from "next/navigation";
 
 import Form from "@/components/Form";
 import FormControl from "@/components/FormControl";
@@ -9,17 +10,28 @@ import Button from "@/components/Button";
 import FieldLabel from "@/components/FieldLabel";
 import Heading from "@/components/Heading";
 import { VALIDATION_RULES } from "@/constants/validation-rules";
-
+import { signInHandler } from "@/app/actions/sign-in";
+import { useToastStore } from "@/store/toast";
 type FormFields = {
   email: string;
   password: string;
 };
 export default function Index() {
+  const { setToast } = useToastStore();
+  const searchParams = useSearchParams();
+  const emailVerificationMessage = searchParams.get(
+    "email-verification-message"
+  );
+
+  if (emailVerificationMessage) {
+    setToast({ message: emailVerificationMessage, type: "success" });
+  }
+
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
-    await fetch("/auth/sign-in", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    });
+    const { error } = (await signInHandler(formData)) ?? {};
+    if (error) {
+      setToast({ message: error.message, type: "error" });
+    }
   };
 
   return (
@@ -45,7 +57,7 @@ export default function Index() {
             placeholder="••••••••"
           />
         </FormControl>
-        <Button type="submit" variant="primary" className="mt-4">
+        <Button type="submit" className="mt-4">
           Sign in
         </Button>
         <p className="text-center mt-10">

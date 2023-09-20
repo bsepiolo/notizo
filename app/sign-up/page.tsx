@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import Messages from "@/components/Messages";
 import { SubmitHandler } from "react-hook-form";
 
 import Form from "@/components/Form";
@@ -10,17 +9,24 @@ import Button from "@/components/Button";
 import FieldLabel from "@/components/FieldLabel";
 import Heading from "@/components/Heading";
 import { VALIDATION_RULES } from "@/constants/validation-rules";
+import { signUpHandler } from "@/app/actions/sign-up";
+import { useToastStore } from "@/store/toast";
 
 type FormFields = {
   email: string;
   password: string;
 };
 export default function SignUp() {
+  const { setToast } = useToastStore();
+
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
-    await fetch("/auth/sign-up", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    });
+    const { error, success } = await signUpHandler(formData);
+    if (error) {
+      setToast({ message: error.message, type: "error" });
+    }
+    if (success) {
+      setToast({ message: success.message, type: "success" });
+    }
   };
 
   return (
@@ -46,7 +52,7 @@ export default function SignUp() {
             placeholder="••••••••"
           />
         </FormControl>
-        <Button type="submit" variant="primary" className="mt-4">
+        <Button type="submit" className="mt-4">
           Sign up
         </Button>
         <p className="text-center mt-10">
