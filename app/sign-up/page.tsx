@@ -21,11 +21,13 @@ export default function SignUp() {
   const { setToast } = useToastStore();
 
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
-    const { error, successMessage } = await signUpHandler(formData);
+    const { error, success } = await signUpHandler(formData);
     if (error) {
       setToast({ message: error.message, type: "Error" });
     }
-    if (successMessage) setToast({ message: successMessage, type: "Success" });
+    if (success) {
+      setToast({ message: success.message, type: "Success" });
+    }
   };
 
   return (

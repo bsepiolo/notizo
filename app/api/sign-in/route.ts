@@ -7,7 +7,6 @@ export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url);
   const { email, password } = await request.json();
-  console.log("FORM TEST", email);
   const supabase = createRouteHandlerClient({ cookies });
 
   const { error } = await supabase.auth.signInWithPassword({

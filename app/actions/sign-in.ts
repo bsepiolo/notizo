@@ -1,11 +1,12 @@
 "use server";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { AuthResponse } from "@/types/auth-response.type";
 
 export const signInHandler = async (formData: {
   email: string;
   password: string;
-}): Promise<void | { error: { status?: number; message: string } }> => {
+}): Promise<void | AuthResponse> => {
   const { email, password } = formData;
   const supabase = createRouteHandlerClient({ cookies });
 

@@ -1,10 +1,5 @@
 import { ReactElement } from "react";
 
-enum ButtonVariant {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-  TEXT = "text",
-}
 type Props = {
   variant?: "default" | "text" | "outlined";
   type?: "submit" | "button" | "reset";
