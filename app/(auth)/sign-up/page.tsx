@@ -57,10 +57,7 @@ export default function SignUp() {
         </Button>
         <p className="text-center mt-10">
           Already have an account?{" "}
-          <Link
-            href="/sign-in"
-            className="text-blue font-medium hover:underline"
-          >
+          <Link href="/" className="text-blue font-medium hover:underline">
             Sign in
           </Link>
         </p>

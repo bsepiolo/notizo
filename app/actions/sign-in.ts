@@ -2,6 +2,7 @@
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { AuthResponse } from "@/types/auth-response.type";
+import { redirect } from "next/navigation";
 
 export const signInHandler = async (formData: {
   email: string;
@@ -18,4 +19,5 @@ export const signInHandler = async (formData: {
   if (error) {
     return { error: { status: error.status, message: error.message } };
   }
+  redirect("/dashboard");
 };
