@@ -36,7 +36,7 @@ export default function TextBox({
         placeholder={placeholder}
         type={type}
         {...registerAttribute}
-        className={`rounded-2sm h-input-lg px-4 py-2 bg-white  w-full ${borderColorClass}`}
+        className={`rounded-2sm h-input-base px-4 py-2 bg-white w-full ${borderColorClass}`}
       />
     </div>
   );
