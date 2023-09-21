@@ -39,7 +39,10 @@ module.exports = {
         accent: "rgb(var(--accent) / <alpha-value>)",
       },
       height: {
-        "input-lg": "46px",
+        "input-base": "46px",
+      },
+      width: {
+        "input-base": "46px",
       },
     },
   },
