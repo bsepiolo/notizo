@@ -1,7 +1,7 @@
 import { FieldError } from "react-hook-form";
 import { Children, ReactElement, cloneElement } from "react";
-import TextBox from "@/components/TextBox";
-import ValidationError from "@/components/ValidationError";
+import TextBox from "@/app/components/TextBox";
+import ValidationError from "@/app/components/ValidationError";
 import { ValidationRules } from "@/types/validation-rules.type";
 import { FieldValues, UseFormRegister } from "react-hook-form";
 

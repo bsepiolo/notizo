@@ -2,12 +2,12 @@
 import Link from "next/link";
 import { SubmitHandler } from "react-hook-form";
 
-import Form from "@/components/Form";
-import FormControl from "@/components/FormControl";
-import TextBox from "@/components/TextBox";
-import Button from "@/components/Button";
-import FieldLabel from "@/components/FieldLabel";
-import Heading from "@/components/Heading";
+import Form from "@/app/components/Form";
+import FormControl from "@/app/components/FormControl";
+import TextBox from "@/app/components/TextBox";
+import Button from "@/app/components/Button";
+import FieldLabel from "@/app/components/FieldLabel";
+import Heading from "@/app/components/Heading";
 import { VALIDATION_RULES } from "@/constants/validation-rules";
 import { signUpHandler } from "@/app/actions/sign-up";
 import { useToastStore } from "@/store/toast";
