@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/app/globals.css";
 import "eva-icons/style/eva-icons.css";
 import { Roboto, Montserrat, Istok_Web } from "next/font/google";
 import Toast from "@/app/components/Toast";
@@ -28,15 +28,16 @@ const metadata = {
   title: "Notizo",
   description: "Your last note taking app",
 };
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params: { lang },
 }: {
   children: React.ReactNode;
+  params: any;
 }) {
   return (
     <html
-      lang="en"
+      lang={lang}
       className={`${montserrat.variable} ${istokWeb.variable} ${roboto.variable} font-sans`}
     >
       <body>
