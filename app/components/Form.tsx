@@ -1,18 +1,24 @@
 import React, { ReactElement, Children, cloneElement } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import FormControl from "@/app/components/FormControl";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 type Props = {
   onSubmit: SubmitHandler<any>;
+  schema: any;
   children: ReactElement[];
 };
 
-export default function Form({ children, onSubmit }: Props) {
+export default function Form<T extends FieldValues>({
+  children,
+  onSubmit,
+  schema,
+}: Props) {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm();
+  } = useForm<T>({ resolver: zodResolver(schema) });
 
   return (
     <form
