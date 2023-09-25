@@ -1,7 +1,9 @@
 "use client";
+
 import Link from "next/link";
 import { SubmitHandler } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
+import { signInSchema, SignInSchema } from "@/constants/validation-rules";
 
 import Form from "@/app/components/Form";
 import FormControl from "@/app/components/FormControl";
@@ -9,7 +11,6 @@ import TextBox from "@/app/components/TextBox";
 import Button from "@/app/components/Button";
 import FieldLabel from "@/app/components/FieldLabel";
 import Heading from "@/app/components/Heading";
-import { VALIDATION_RULES } from "@/constants/validation-rules";
 import { signInHandler } from "@/app/actions/sign-in";
 import { useToastStore } from "@/store/toast";
 
@@ -17,6 +18,7 @@ type FormFields = {
   email: string;
   password: string;
 };
+
 export default function Index() {
   const { setToast } = useToastStore();
   const searchParams = useSearchParams();
@@ -29,17 +31,17 @@ export default function Index() {
   }
 
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
-    const { error } = (await signInHandler(formData)) ?? {};
-    if (error) {
-      setToast({ message: error.message, type: "error" });
+    const response = await signInHandler(formData);
+    if (response?.error) {
+      setToast({ message: response.error.message, type: "error" });
     }
   };
 
   return (
     <>
       <Heading>Log in</Heading>
-      <Form onSubmit={onSubmit}>
-        <FormControl rules={VALIDATION_RULES.email}>
+      <Form<SignInSchema> onSubmit={onSubmit} schema={signInSchema}>
+        <FormControl>
           <FieldLabel htmlFor="email">Email</FieldLabel>
           <TextBox
             id="email"
@@ -49,7 +51,7 @@ export default function Index() {
           />
         </FormControl>
 
-        <FormControl rules={VALIDATION_RULES.password}>
+        <FormControl>
           <FieldLabel htmlFor="password">Password</FieldLabel>
           <TextBox
             id="password"
