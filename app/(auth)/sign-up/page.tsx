@@ -8,7 +8,7 @@ import TextBox from "@/app/components/TextBox";
 import Button from "@/app/components/Button";
 import FieldLabel from "@/app/components/FieldLabel";
 import Heading from "@/app/components/Heading";
-import { VALIDATION_RULES } from "@/constants/validation-rules";
+import { SignUpSchema, signUpSchema } from "@/constants/validation-rules";
 import { signUpHandler } from "@/app/actions/sign-up";
 import { useToastStore } from "@/store/toast";
 
@@ -32,8 +32,8 @@ export default function SignUp() {
   return (
     <>
       <Heading>Create account</Heading>
-      <Form onSubmit={onSubmit}>
-        <FormControl rules={VALIDATION_RULES.email}>
+      <Form<SignUpSchema> onSubmit={onSubmit} schema={signUpSchema}>
+        <FormControl>
           <FieldLabel htmlFor="email">Email</FieldLabel>
           <TextBox
             id="email"
@@ -43,7 +43,7 @@ export default function SignUp() {
           />
         </FormControl>
 
-        <FormControl rules={VALIDATION_RULES.password}>
+        <FormControl>
           <FieldLabel htmlFor="password">Password</FieldLabel>
           <TextBox
             id="password"
