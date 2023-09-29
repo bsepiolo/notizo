@@ -1,8 +1,7 @@
 import "@/app/globals.css";
 import "eva-icons/style/eva-icons.css";
 import { Roboto, Montserrat, Istok_Web } from "next/font/google";
-import Toast from "@/app/components/Toast";
-
+import Toast from "@/app/components/ui/Toast";
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500"],

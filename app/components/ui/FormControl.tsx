@@ -1,9 +1,9 @@
 import { FieldError } from "react-hook-form";
 import { Children, ReactElement, cloneElement } from "react";
-import TextBox from "@/app/components/TextBox";
-import ValidationError from "@/app/components/ValidationError";
+import TextBox from "@/app/components/ui/TextBox";
+import ValidationError from "@/app/components/ui/ValidationError";
 import { FieldValues, UseFormRegister } from "react-hook-form";
-
+//todo extend union
 const FormControlsUnion = TextBox;
 type Props = {
   children: ReactElement | ReactElement[];

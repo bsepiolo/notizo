@@ -5,7 +5,7 @@ import { SubmitHandler } from "react-hook-form";
 import Form from "@/app/components/Form";
 import FormControl from "@/app/components/FormControl";
 import TextBox from "@/app/components/TextBox";
-import Button from "@/app/components/Button";
+import Button from "@/app/components/ui/Button";
 import FieldLabel from "@/app/components/FieldLabel";
 import Heading from "@/app/components/Heading";
 import { SignUpSchema, signUpSchema } from "@/constants/validation-rules";
