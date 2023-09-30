@@ -8,7 +8,6 @@ export const signInHandler = async (formData: {
   email: string;
   password: string;
 }): Promise<void | AuthResponse> => {
-  console.log("SERVER ACTION");
   const { email, password } = formData;
   const supabase = createRouteHandlerClient({ cookies });
 

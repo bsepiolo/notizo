@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 import "eva-icons/style/eva-icons.css";
 import { Roboto, Montserrat, Istok_Web } from "next/font/google";
-import Toast from "@/app/components/ui/Toast";
+import { Toaster } from "react-hot-toast";
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -23,7 +23,7 @@ const istokWeb = Istok_Web({
   variable: "--font-istok-web",
 });
 
-const metadata = {
+export const metadata = {
   title: "Notizo",
   description: "Your last note taking app",
 };
@@ -42,7 +42,7 @@ export default async function RootLayout({
       <body>
         <main className="min-h-screen flex flex-col">
           {children}
-          <Toast />
+          <Toaster position="top-center" />
         </main>
       </body>
     </html>
