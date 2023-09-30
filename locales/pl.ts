@@ -1,19 +1,19 @@
 export default {
   form_fields: {
     email: "Email",
-    email_placeholder: "you@example.com",
-    password: "Password",
+    email_placeholder: "ty@przyklad.com",
+    password: "Hasło",
   },
   sign_in: {
-    title: "Login",
-    submit: "Sign in",
-    account_question: "Don't have an account?",
-    sign_up_link: "Sign up for free",
+    title: "Logowanie",
+    submit: "Zaloguj",
+    account_question: "Nie masz jeszcze konta?",
+    sign_up_link: "Zarejestruj się",
   },
   sign_up: {
-    title: "Create account",
-    submit: "Sign up",
-    account_question: "Already have an account?",
-    sign_in_link: "Sign in",
+    title: "Utwórz konto",
+    submit: "Zarejestruj",
+    account_question: "Masz juz konto?",
+    sign_in_link: "Zaloguj się",
   },
 };

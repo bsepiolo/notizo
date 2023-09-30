@@ -32,7 +32,7 @@ export default async function RootLayout({
   params: { lang },
 }: {
   children: React.ReactNode;
-  params: any;
+  params: { lang: string };
 }) {
   return (
     <html

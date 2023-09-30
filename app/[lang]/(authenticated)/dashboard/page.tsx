@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { getLocale, Locales } from "@/app/[lang]/locales";
 
 const getData = async () => {
   const supabase = createServerComponentClient({ cookies });
@@ -7,10 +8,20 @@ const getData = async () => {
   return data;
 };
 
-export default async function Dashboard() {
+export default async function Dashboard({
+  params: { lang },
+}: {
+  params: { lang: Locales };
+}) {
+  const t = await getLocale(lang);
   const data = await getData();
 
-  return data?.map((category) => {
-    return <div>{category.name}</div>;
-  });
+  return (
+    <>
+      {t.form_fields.email_placeholder}
+      {data?.map((category) => {
+        return <div>{category.name}</div>;
+      })}
+    </>
+  );
 }
