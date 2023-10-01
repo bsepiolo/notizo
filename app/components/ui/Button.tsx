@@ -1,3 +1,5 @@
+"use client";
+import { useRouter } from "next/navigation";
 import { ReactElement } from "react";
 
 export type ButtonVariant = "default" | "text" | "outlined";
@@ -7,6 +9,7 @@ type Props = {
   variant?: ButtonVariant;
   type?: "submit" | "button" | "reset";
   children: string | ReactElement | ReactElement[];
+  to?: string;
   color?: ButtonColor;
   icon?: boolean;
   size?: ButtonSize;
@@ -22,8 +25,10 @@ export default function TextBox({
   color = "primary",
   icon,
   size = "base",
+  to,
   onClick,
 }: Props) {
+  const router = useRouter();
   // SIZING
   const sizingIconClasses = {
     base: "h-input-base w-input-base text-xl",
@@ -70,11 +75,16 @@ export default function TextBox({
     text: textColorClasses,
   };
 
+  const onClickHandler = () => {
+    onClick && onClick();
+    to ? router.push(to) : "";
+  };
+
   return (
     <button
       type={type}
       className={`rounded transition-colors duration-75 flex items-center justify-center ${className} ${variantClasses[variant][color]} ${sizingClasses[size]}`}
-      onClick={onClick}
+      onClick={onClickHandler}
     >
       {children}
     </button>

@@ -2,7 +2,7 @@
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { AuthResponse } from "@/types/auth-response.type";
-
+import { redirect } from "next/navigation";
 export const signUpHandler = async (formData: {
   email: string;
   password: string;
@@ -21,6 +21,5 @@ export const signUpHandler = async (formData: {
   if (error) {
     return { error: { status: error.status, message: error.message } };
   }
-
-  return { success: { message: "Check email to continue sign in process" } };
+  redirect(`/check-email`);
 };

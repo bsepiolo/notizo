@@ -1,6 +1,6 @@
 import React, { ReactElement, Children, cloneElement } from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import FormControl from "@/app/components/FormControl";
+import FormControl from "@/app/components/ui/FormControl";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 type Props = {

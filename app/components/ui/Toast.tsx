@@ -1,6 +1,6 @@
 "use client";
 import { useToastStore } from "@/store/toast";
-import Button, { ButtonColor } from "@/app/components/Button";
+import Button, { ButtonColor } from "@/app/components/ui/Button";
 export default function Toast() {
   const { toast, removeToast } = useToastStore();
 
