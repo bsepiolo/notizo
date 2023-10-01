@@ -24,6 +24,9 @@ module.exports = {
       borderRadius: {
         "2sm": "0.25rem",
       },
+      textColor: {
+        secondary: "rgb(var(--gray-500) / <alpha-value>)",
+      },
       colors: {
         white: "rgb(var(--white) / <alpha-value>)",
         black: "rgb(var(--black) / <alpha-value>)",
