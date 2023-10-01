@@ -5,8 +5,8 @@ import Negotiator from "negotiator";
 
 import type { NextRequest } from "next/server";
 
-let locales = ["en", "pl"];
-export let defaultLocale = "en";
+const locales = ["en", "pl"];
+export const defaultLocale = "en";
 
 function getLocale(request: Request): string {
   const headers = new Headers(request.headers);
@@ -20,7 +20,7 @@ function getLocale(request: Request): string {
   return match(languages, locales, defaultLocale);
 }
 export async function middleware(req: NextRequest) {
-  let locale = getLocale(req) ?? defaultLocale;
+  const locale = getLocale(req) ?? defaultLocale;
   const pathname = req.nextUrl.pathname;
 
   const newUrl = new URL(`/${locale}${pathname}`, req.nextUrl);

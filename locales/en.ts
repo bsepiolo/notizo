@@ -15,5 +15,12 @@ export default {
     submit: "Sign up",
     account_question: "Already have an account?",
     sign_in_link: "Sign in",
+    check_email: "Check email to continue sign in process",
+  },
+  check_email: {
+    title: "Activate Your Account",
+    content:
+      "After registration, we sent an email with an activation link. Please check your inbox and click the link to activate your account.",
+    button: "Continue to sign in",
   },
 };

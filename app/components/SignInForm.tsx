@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import Form from "@/app/components/ui/Form";
 import FormControl from "@/app/components/ui/FormControl";
 import TextBox from "@/app/components/ui/TextBox";
@@ -8,7 +7,6 @@ import FieldLabel from "@/app/components/ui/FieldLabel";
 import { signInSchema } from "@/constants/validation-rules";
 import { signInHandler } from "@/app/actions/sign-in";
 import { SubmitHandler } from "react-hook-form";
-import { useSearchParams } from "next/navigation";
 import { z } from "zod";
 import { toast } from "react-hot-toast";
 
@@ -25,16 +23,6 @@ type SignInSchema = z.infer<typeof signInSchema>;
 export default function SignInForm<T extends Record<string, any>>({
   t,
 }: Props<T>) {
-  const searchParams = useSearchParams();
-  const emailVerificationMessage = searchParams.get(
-    "email-verification-message"
-  );
-  useEffect(() => {
-    if (emailVerificationMessage) {
-      toast.success(emailVerificationMessage);
-    }
-  }, []);
-
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
     const response = await signInHandler(formData);
     if (response?.error) {

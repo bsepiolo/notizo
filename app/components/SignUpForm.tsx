@@ -24,9 +24,9 @@ export default function SignInForm<T extends Record<string, any>>({
   t,
 }: Props<T>) {
   const onSubmit: SubmitHandler<FormFields> = async (formData) => {
-    const { error } = await signUpHandler(formData);
-    if (error) {
-      toast.error(error.message);
+    const response = await signUpHandler(formData);
+    if (response?.error) {
+      toast.error(response.error.message);
     }
   };
 
@@ -52,7 +52,7 @@ export default function SignInForm<T extends Record<string, any>>({
         />
       </FormControl>
       <Button type="submit" className="mt-4">
-        {t.sign_in.submit}
+        {t.sign_up.submit}
       </Button>
     </Form>
   );
