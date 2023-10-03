@@ -45,6 +45,7 @@ module.exports = {
         "input-base": "46px",
       },
       width: {
+        "2px": "2px",
         "input-base": "46px",
       },
     },

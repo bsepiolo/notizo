@@ -47,12 +47,22 @@ async function GroupList() {
         return (
           <li
             key={category.id}
-            className="flex cursor-pointer items-center space-x-3 py-1 px-1.5 hover:bg-gray-200 "
+            className="flex flex-col cursor-pointer py-1 px-1.5 hover:bg-gray-200 "
           >
-            <div className="text-[22px] w-6 h-6 flex items-center justify-center">
-              <i className="eva eva-folder-outline"></i>
+            <div className="flex space-x-3">
+              <div className="text-[22px] w-6 h-6 flex items-center justify-center">
+                <i className="eva eva-folder-outline"></i>
+              </div>
+              <span>{category.name}</span>
             </div>
-            <span>{category.name}</span>
+            <div className="flex items-stretch">
+              <div className="mr-3 w-6 relative before:block before:absolute before:w-2px before:h-full before:left-0 before:right-0 before:m-auto before:bg-gray-100"></div>
+              <ul>
+                <li>Test</li>
+                <li>Test</li>
+                <li>Test</li>
+              </ul>
+            </div>
           </li>
         );
       })}
