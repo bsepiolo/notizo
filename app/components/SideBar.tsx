@@ -6,7 +6,8 @@ import Button from "@/app/components/ui/Button";
 
 const getData = async () => {
   const supabase = createServerComponentClient({ cookies });
-  const { data } = await supabase.from("categories").select("*");
+  const { data, error } = await supabase.from("notes").select("*, groups(*)");
+  console.log(data);
   return data;
 };
 
@@ -45,15 +46,15 @@ async function GroupList() {
     <ul className="space-y-1">
       {data?.map((category) => {
         return (
-          <li
-            key={category.id}
-            className="flex flex-col cursor-pointer py-1 px-1.5 hover:bg-gray-200 "
-          >
-            <div className="flex space-x-3">
+          <li key={category.id} className="flex flex-col">
+            <div className="flex space-x-3 cursor-pointer py-1 px-1.5 rounded-2sm group hover:bg-gray-200">
               <div className="text-[22px] w-6 h-6 flex items-center justify-center">
                 <i className="eva eva-folder-outline"></i>
               </div>
-              <span>{category.name}</span>
+              <div className="flex-grow">{category.name}</div>
+              <div className="group-hover:flex text-[22px] w-6 h-6 hidden items-center justify-center">
+                <i className="eva eva-plus-outline"></i>
+              </div>
             </div>
             <div className="flex items-stretch">
               <div className="mr-3 w-6 relative before:block before:absolute before:w-2px before:h-full before:left-0 before:right-0 before:m-auto before:bg-gray-100"></div>
