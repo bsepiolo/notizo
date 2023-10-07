@@ -2,7 +2,7 @@ import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse } from "next/server";
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
-
+import type { Database } from "@/types/supabase";
 import type { NextRequest } from "next/server";
 
 const locales = ["en", "pl"];
@@ -26,7 +26,7 @@ export async function middleware(req: NextRequest) {
   const newUrl = new URL(`/${locale}${pathname}`, req.nextUrl);
   if (req.nextUrl.pathname.startsWith("/dashboard")) {
     const res = NextResponse.next();
-    const supabase = createMiddlewareClient({ req, res });
+    const supabase = createMiddlewareClient<Database>({ req, res });
 
     const {
       data: { session },

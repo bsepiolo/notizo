@@ -3,11 +3,10 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { getLocale, Locales } from "@/app/[lang]/locales";
 import TextBox from "@/app/components/ui/TextBox";
 import Button from "@/app/components/ui/Button";
-
-const getData = async () => {
+import ListElement from "@/app/components/SideBar/ListElement";
+const fetchGroups = async () => {
   const supabase = createServerComponentClient({ cookies });
-  const { data, error } = await supabase.from("notes").select("*, groups(*)");
-  console.log(data);
+  const { data, error } = await supabase.from("groups").select("*");
   return data;
 };
 
@@ -40,31 +39,32 @@ async function AddFolderButton() {
   );
 }
 async function GroupList() {
-  const data = await getData();
+  const groups = await fetchGroups();
 
   return (
     <ul className="space-y-1">
-      {data?.map((category) => {
+      {groups?.map((group) => {
         return (
-          <li key={category.id} className="flex flex-col">
-            <div className="flex space-x-3 cursor-pointer py-1 px-1.5 rounded-2sm group hover:bg-gray-200">
-              <div className="text-[22px] w-6 h-6 flex items-center justify-center">
-                <i className="eva eva-folder-outline"></i>
-              </div>
-              <div className="flex-grow">{category.name}</div>
-              <div className="group-hover:flex text-[22px] w-6 h-6 hidden items-center justify-center">
-                <i className="eva eva-plus-outline"></i>
-              </div>
-            </div>
-            <div className="flex items-stretch">
-              <div className="mr-3 w-6 relative before:block before:absolute before:w-2px before:h-full before:left-0 before:right-0 before:m-auto before:bg-gray-100"></div>
-              <ul>
-                <li>Test</li>
-                <li>Test</li>
-                <li>Test</li>
-              </ul>
-            </div>
-          </li>
+          <ListElement group={group} />
+          // <li key={group.id} className="flex flex-col">
+          //   <div className="flex space-x-3 cursor-pointer py-1 px-1.5 rounded-2sm group hover:bg-gray-200">
+          //     <div className="text-[22px] w-6 h-6 flex items-center justify-center">
+          //       <i className="eva eva-folder-outline"></i>
+          //     </div>
+          //     <div className="flex-grow">{group.name}</div>
+          //     <div className="group-hover:flex text-[22px] w-6 h-6 hidden items-center justify-center">
+          //       <i className="eva eva-plus-outline"></i>
+          //     </div>
+          //   </div>
+          //   <div className="flex items-stretch">
+          //     <div className="mr-3 w-6 relative before:block before:absolute before:w-2px before:h-full before:left-0 before:right-0 before:m-auto before:bg-gray-100"></div>
+          //     <ul>
+          //       <li>Test</li>
+          //       <li>Test</li>
+          //       <li>Test</li>
+          //     </ul>
+          //   </div>
+          // </li>
         );
       })}
     </ul>
